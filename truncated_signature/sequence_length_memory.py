@@ -92,5 +92,5 @@ for x in np.linspace(2, 6, num=4*5 + 1):
 
 print(results)
 
-with open(f"{OUTPUT_DIR}/brownian.pkl", "wb") as f:
+with open(f"{OUTPUT_DIR}/brownian_pM.pkl", "wb") as f:
     pickle.dump(results, f)
