@@ -1,11 +1,11 @@
 import os
-import cupy as cp
 import time
 import gc
-import ksig
 import tracemalloc
 import threading
-import pynvml
+
+import cupy as cp
+import ksig
 
 # Ensure we use GPU-0
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -68,9 +68,6 @@ def monitor_cpu_memory(function, X, *args, **kwargs):
 
 
 def gpu_mem_used(id):
-    # handle = pynvml.nvmlDeviceGetHandleByIndex(id)
-    # info = pynvml.nvmlDeviceGetMemoryInfo(handle)
-    # return int(info.used)
     return int(cp.get_default_memory_pool().used_bytes())
 
 def gpu_mem_used_no_cache(id):
@@ -107,7 +104,6 @@ def monitor_gpu_memory(function, X, *args, **kwargs):
     peak_monitoring = False
     nvml_peak = 0
 
-    pynvml.nvmlInit()
     id = cp.cuda.runtime.getDevice()
     nvml_before = gpu_mem_used_no_cache(id)
 

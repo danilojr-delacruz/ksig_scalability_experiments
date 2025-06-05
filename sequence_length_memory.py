@@ -16,9 +16,9 @@ MAX_RUN_TIME = 600
 
 ###############################################################################
 functions_to_call = [
-    "rfsf_trp", #"rfsf_dp2", "rfsf_dp1",
-    # "rfsf_cs", "rfsf_vsp",
-    # "lifted_kt", "lifted_pde",
+    "rfsf_trp", "rfsf_dp2", "rfsf_dp1",
+    "rfsf_cs", "rfsf_vsp",
+    "lifted_kt", "lifted_pde",
 ]
 
 blacklisted = dict()
@@ -52,7 +52,7 @@ print(cpu_current, cpu_peak, gpu_current, gpu_peak)
 with open("base_script.py", "r") as f:
     base_script = f.read()
 
-for x in np.linspace(2, 6, num=4*10 + 1):
+for x in np.linspace(2, 6, num=4*5 + 1):
     L = int(10 ** x)
     print(L)
     for name in functions_to_call:
