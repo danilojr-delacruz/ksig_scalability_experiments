@@ -60,7 +60,7 @@ def monitor_cpu_memory(function, X, *args, **kwargs):
 
 
 def gpu_mem_used(id):
-    return int(jax.local_devices()[0].memory_stats()["peak_bytes_in_use"])
+    return int(jax.local_devices()[0].memory_stats()["bytes_in_use"])
 
 def gpu_mem_used_no_cache(id):
     # Need to do jax.block_until_ready?
@@ -98,7 +98,6 @@ def monitor_gpu_memory(function, X, *args, **kwargs):
 
     id = 0
     nvml_before = gpu_mem_used_no_cache(id)
-
     peak_monitor_start()
 
     kernel = function(X, *args, **kwargs)
