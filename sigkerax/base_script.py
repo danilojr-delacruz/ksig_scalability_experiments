@@ -10,13 +10,9 @@ from sigkerax.sigkernel import SigKernel
 # Ensure we use GPU-0
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
-EMBEDDING_ORDER = 1
 N = 10
 d = 5
-
 M = 5
-n_components_rff = 100
-n_components_proj = 100
 
 
 ################################################################################

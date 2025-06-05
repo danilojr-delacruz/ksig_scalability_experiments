@@ -7,7 +7,6 @@ import subprocess
 import jax
 from sigkerax.sigkernel import SigKernel
 
-EMBEDDING_ORDER = 1
 OUTPUT_DIR = "results/sequence_length_memory/"
 
 # In seconds
