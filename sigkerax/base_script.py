@@ -14,6 +14,9 @@ N = 10
 d = 5
 M = 5
 
+n_components_rff = 100
+n_components_proj = 100
+
 
 ################################################################################
 def monitor_time(function, X, *args, **kwargs):
