@@ -86,7 +86,7 @@ X = cp.random.randn(N, L, d)
 X = cp.cumsum(X, axis=1) / cp.sqrt(L)
 
 exponents = np.linspace(2, 4, num=2*10 + 1)
-D_values = [int(10 ** x) for x in exponents][:-5]
+D_values = [int(10 ** x) for x in exponents][:-6]
 M_values = [m for m in range(1, 10+1)]
 
 
