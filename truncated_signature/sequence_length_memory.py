@@ -48,7 +48,7 @@ print(cpu_current, cpu_peak, gpu_current, gpu_peak)
 """
 
 
-with open("base_script.py", "r") as f:
+with open("truncated_signature/base_script.py", "r") as f:
     base_script = f.read()
 
 for x in np.linspace(2, 6, num=4*5 + 1):
