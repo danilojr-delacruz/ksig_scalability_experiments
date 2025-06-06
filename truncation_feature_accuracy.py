@@ -85,8 +85,8 @@ def lifted_kt(X, n_levels, **kwargs):
 X = cp.random.randn(N, L, d)
 X = cp.cumsum(X, axis=1) / cp.sqrt(L)
 
-# 1e3 to 1e6
-exponents = np.linspace(3, 6, num=3*10 + 1)
+# 1e3 to 1e4.5
+exponents = np.linspace(3, 4.5, num=int(1.5*10) + 1)
 F_values = [int(10 ** x) for x in exponents]
 M_values = [m for m in range(1, 10+1)]
 
