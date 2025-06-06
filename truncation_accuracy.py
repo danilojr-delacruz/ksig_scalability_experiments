@@ -33,7 +33,7 @@ def get_function_call_code(M, name):
     if name == "rfsf_dp2":
         n = ceil(1000 * M / (2**(M+1) - 1))
     return f"""L = 100
-N=100
+N=20
 # Generate X, Y
 cp.random.seed(123)
 X = cp.random.randn(N, L, d)

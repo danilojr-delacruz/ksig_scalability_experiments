@@ -127,9 +127,6 @@ def monitor_gpu_memory(function, X, *args, **kwargs):
 
 
 def monitor_accuracy(function, X, *args, **kwargs):
-
-    N = 20
-
     exact_kernel = lifted_kt(X, *args, **kwargs)
     K_exact = exact_kernel(X)
 
