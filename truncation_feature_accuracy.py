@@ -86,7 +86,7 @@ X = cp.random.randn(N, L, d)
 X = cp.cumsum(X, axis=1) / cp.sqrt(L)
 
 # 1e3 to 1e4.5
-exponents = np.linspace(3, 4.5, num=int(1.5*10) + 1)
+exponents = np.linspace(3, 4, num=1*10 + 1)
 F_values = [int(10 ** x) for x in exponents]
 M_values = [m for m in range(1, 10+1)]
 
@@ -130,7 +130,6 @@ for i in range(len(F_values)):
 
         print(rmse, mape)
         print()
-
 
         del K
         del fm
