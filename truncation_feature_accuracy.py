@@ -119,6 +119,9 @@ for i in range(len(D_values)):
         ratio = cp.triu(K / K_exact - 1)
         mape = cp.abs(ratio).sum() / num_entries
 
+        # Ensure these are floats
+        rmse = rmse.item()
+        mape = mape.item()
 
         F = f*M + 1
         results[(F, M)] = (rmse, mape)
@@ -168,6 +171,10 @@ for i in range(len(D_values)):
         ratio = cp.triu(K / K_exact - 1)
         mape = cp.abs(ratio).sum() / num_entries
 
+        # Ensure these are floats
+        rmse = rmse.item()
+        mape = mape.item()
+
         F = f*M + 1
         results[(F, M)] = (rmse, mape)
 
@@ -216,6 +223,10 @@ for i in range(len(D_values)):
         ratio = cp.triu(K / K_exact - 1)
         mape = cp.abs(ratio).sum() / num_entries
 
+        # Ensure these are floats
+        rmse = rmse.item()
+        mape = mape.item()
+
         F = f*M + 1
         results[(F, M)] = (rmse, mape)
 
@@ -260,6 +271,10 @@ for i in range(len(D_values)):
 
         ratio = cp.triu(K / K_exact - 1)
         mape = cp.abs(ratio).sum() / num_entries
+
+        # Ensure these are floats
+        rmse = rmse.item()
+        mape = mape.item()
 
         F = f*M + 1
         results[(F, M)] = (rmse, mape)
