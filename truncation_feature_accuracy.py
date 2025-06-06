@@ -85,8 +85,9 @@ def lifted_kt(X, n_levels, **kwargs):
 X = cp.random.randn(N, L, d)
 X = cp.cumsum(X, axis=1) / cp.sqrt(L)
 
-exponents = np.linspace(2, 4, num=2*10 + 1)
-D_values = [int(10 ** x) for x in exponents][:-6]
+# 1e3 to 1e6
+exponents = np.linspace(3, 6, num=3*10 + 1)
+F_values = [int(10 ** x) for x in exponents]
 M_values = [m for m in range(1, 10+1)]
 
 
@@ -95,14 +96,16 @@ print("TRP")
 results = dict()
 
 # Change these to have lower resolution
-for i in range(len(D_values)):
+for i in range(len(F_values)):
     for j in range(len(M_values)):
-        f = D_values[i]
-        n = f
-
+        F = F_values[i]
         M = M_values[j]
 
-        print(f, M)
+        # F = Mf + 1
+        f = ceil((F - 1) / M)
+        n = f
+
+        print(F, f, M)
         fm = rfsf_trp(X, M, f, n)
         K = fm(X)
 
@@ -123,7 +126,6 @@ for i in range(len(D_values)):
         rmse = rmse.item()
         mape = mape.item()
 
-        F = f*M + 1
         results[(F, M)] = (rmse, mape)
 
         print(rmse, mape)
@@ -147,14 +149,16 @@ print("TS")
 results = dict()
 
 # Change these to have lower resolution
-for i in range(len(D_values)):
+for i in range(len(F_values)):
     for j in range(len(M_values)):
-        f = D_values[i]
-        n = f
-
+        F = F_values[i]
         M = M_values[j]
 
-        print(f, M)
+        # F = Mf + 1
+        f = ceil((F - 1) / M)
+        n = f
+
+        print(F, f, M)
         fm = rfsf_cs(X, M, f, n)
         K = fm(X)
 
@@ -175,7 +179,6 @@ for i in range(len(D_values)):
         rmse = rmse.item()
         mape = mape.item()
 
-        F = f*M + 1
         results[(F, M)] = (rmse, mape)
 
         print(rmse, mape)
@@ -199,14 +202,16 @@ print("DP1")
 results = dict()
 
 # Change these to have lower resolution
-for i in range(len(D_values)):
+for i in range(len(F_values)):
     for j in range(len(M_values)):
-        f = D_values[i]
-        n = f
-
+        F = F_values[i]
         M = M_values[j]
 
-        print(f, M)
+        # F = Mf + 1
+        f = ceil((F - 1) / M)
+        n = f
+
+        print(F, f, M)
         fm = rfsf_dp1(X, M, f, n)
         K = fm(X)
 
@@ -227,7 +232,6 @@ for i in range(len(D_values)):
         rmse = rmse.item()
         mape = mape.item()
 
-        F = f*M + 1
         results[(F, M)] = (rmse, mape)
 
         print(rmse, mape)
@@ -246,16 +250,20 @@ with open(f"{OUTPUT_DIR}/dp.pkl", "wb") as f:
 
 
 ### DP2
+print("DP2")
 results = dict()
 
 # Change these to have lower resolution
-for i in range(len(D_values)):
+for i in range(len(F_values)):
     for j in range(len(M_values)):
+        F = F_values[i]
         M = M_values[j]
-        f = ceil(D_values[i] * M / (2**(M+1) - 1))
+
+        # F = (2^M+1 - 1) f
+        f = ceil(F / (2**(M+1) - 1))
         n = f
 
-        print(f, M)
+        print(F, f, M)
         fm = rfsf_dp2(X, M, f, n)
         K = fm(X)
 
@@ -276,7 +284,6 @@ for i in range(len(D_values)):
         rmse = rmse.item()
         mape = mape.item()
 
-        F = f*M + 1
         results[(F, M)] = (rmse, mape)
 
         print(rmse, mape)
